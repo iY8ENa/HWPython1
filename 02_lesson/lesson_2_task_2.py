@@ -7,9 +7,11 @@ def is_year_leap(year):
     else:
         return False
 
-# Тестируем функцию на выбранном году
-test_year = 2024  # Выберите любой год для тестирования
-result = is_year_leap(test_year)
+# Запрашиваем у пользователя ввод года
+test_year = int(input('Введите год: '))
 
-# Вывод результата в консоль
-print(f"Год {test_year}: {result}")
+# Определяем, является ли год високосным
+if is_year_leap(test_year):
+    print(f'Год {test_year} является високосным.')
+else:
+    print(f'Год {test_year} не является високосным.')
