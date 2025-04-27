@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 class CheckoutPage:
     def __init__(self, driver):
         """
-        Инициализирует объект страницы оплаты.
+        Инициализирует объект страницы оформления заказа.
 
         :param driver: Selenium WebDriver instance.
         """

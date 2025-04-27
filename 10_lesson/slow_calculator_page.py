@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
+import allure
 
 
 class SlowCalculatorPage:
@@ -9,7 +10,7 @@ class SlowCalculatorPage:
         """
         Инициализирует объект страницы калькулятора.
 
-        :param driver: Selenium WebDriver экземпляр.
+        :param driver: Selenium WebDriver instance.
         """
         self.driver = driver
         self.delay_input = (By.ID, "delay")
@@ -37,18 +38,17 @@ class SlowCalculatorPage:
 
         :param button: Текст кнопки ('7', '+', '=', etc.).
         """
-        button_element = self.driver.find_element(*self.buttons[button])
+        button_element = self.driver.find_element(*self.buttons[button])  # Убрали лишний пробел
         button_element.click()
 
     def get_result(self) -> str:
         """
         Возвращает результат вычисления с экрана калькулятора.
-        Ждет, пока элемент примет значение "15".
+        Ждет, пока на экране появится точное значение результата.
         """
         # Ожидаем, пока элемент примет значение "15"
         WebDriverWait(self.driver, 50).until(
             EC.text_to_be_present_in_element(self.result_screen, "15")
         )
-        # Получаем текст элемента
         result_div = self.driver.find_element(*self.result_screen)
         return result_div.text.strip()

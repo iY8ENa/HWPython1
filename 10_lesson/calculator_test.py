@@ -4,7 +4,6 @@ from selenium.webdriver.chrome.service import Service
 from slow_calculator_page import SlowCalculatorPage
 import allure
 
-
 class SlowCalculatorTest(unittest.TestCase):
     def setUp(self):
         """Инициализирует драйвер браузера и загружает страницу калькулятора."""
@@ -38,8 +37,8 @@ class SlowCalculatorTest(unittest.TestCase):
 
         with allure.step("Получаем результат и проверяем равенство"):
             result = self.calculator_page.get_result()
-            self.assertEqual(result, "15", "Результат вычисления не равен 15.")
-
+            with allure.step("Проверка результата"):
+                self.assertEqual(result, "15", "Результат вычисления не равен 15.")
 
 if __name__ == "__main__":
     unittest.main()
